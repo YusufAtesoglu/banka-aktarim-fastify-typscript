@@ -1,0 +1,26 @@
+{
+  "name": "banka_aktarim_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/routes": "^6.0.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "fastify": "^5.0.0",
+    "fastify-cors": "^6.1.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.1",
+    "typescript": "^5.6.3"
+  }
+}
