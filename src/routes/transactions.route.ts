@@ -1,19 +1,20 @@
-import {fastify} from "@fastify/routes"
-
+import fastify, { FastifyInstance,FastifyPluginCallback } from 'fastify';
+const server: FastifyInstance = fastify({ logger: true });
 const transactions = require('../controllers/transactions.controller');
 
+export const transactionsRouter: FastifyPluginCallback = async (fastify: FastifyInstance) => {
 /* GET transactions. */
-fastify.get('/', transactions.get);
+server.get('/', transactions.get);
   
 /* POST transaction */
-fastify.post('/', transactions.create);
+server.post('/', transactions.create);
 
 /* PUT transaction */
-fastify.put('/setBankAccountTransactionErpCode', transactions.setBankAccountTransactionErpCode);
-fastify.put('/:id', transactions.update);
+server.put('/setBankAccountTransactionErpCode', transactions.setBankAccountTransactionErpCode);
+server.put('/:id', transactions.update);
 
 
 /* DELETE transaction */
-fastify.delete('/:id', transactions.remove);
+server.delete('/:id', transactions.remove);
+}
 
-module.exports = {};

@@ -1,14 +1,14 @@
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-const cors=require("fastify-cors")
+// import cors from "@fastify/cors"
 const {transactionsRouter}=require("./src/routes/transactions.route")
 const {accountPlanCodesRouter}=require("./src/routes/accountPlanCodes.route")
-const {currentAccountsRouter}=require("./routes/currentAccounts.route")
-const {bankAccountsRouter}=require("./routes/bankAccounts.route")
+const {currentAccountsRouter}=require("./src/routes/currentAccounts.route")
+const {bankAccountsRouter}=require("./src/routes/bankAccounts.route")
 const app: FastifyInstance = Fastify();
 const port = Number(process.env.PORT) || 3700;
 
 
-app.register(cors);
+// app.register(cors);
 
 
 app.get('/', async (req: FastifyRequest, res: FastifyReply) => {

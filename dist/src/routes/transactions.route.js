@@ -1,13 +1,21 @@
 "use strict";
-const fastify = require("fastify")();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.transactionsRouter = void 0;
+const fastify_1 = __importDefault(require("fastify"));
+const server = (0, fastify_1.default)({ logger: true });
 const transactions = require('../controllers/transactions.controller');
-/* GET transactions. */
-fastify.get('/', transactions.get);
-/* POST transaction */
-fastify.post('/', transactions.create);
-/* PUT transaction */
-fastify.put('/setBankAccountTransactionErpCode', transactions.setBankAccountTransactionErpCode);
-fastify.put('/:id', transactions.update);
-/* DELETE transaction */
-fastify.delete('/:id', transactions.remove);
-module.exports = {};
+const transactionsRouter = async (fastify) => {
+    /* GET transactions. */
+    server.get('/', transactions.get);
+    /* POST transaction */
+    server.post('/', transactions.create);
+    /* PUT transaction */
+    server.put('/setBankAccountTransactionErpCode', transactions.setBankAccountTransactionErpCode);
+    server.put('/:id', transactions.update);
+    /* DELETE transaction */
+    server.delete('/:id', transactions.remove);
+};
+exports.transactionsRouter = transactionsRouter;
