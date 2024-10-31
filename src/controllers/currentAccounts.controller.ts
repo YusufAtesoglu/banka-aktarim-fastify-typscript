@@ -1,7 +1,9 @@
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 import { FastifyRequest, FastifyReply } from 'fastify';
-async function getErpCurrentAccounts(req:FastifyRequest, res:FastifyReply) {
-    try {
+export class CurrentAccounts{
+async  getErpCurrentAccounts(req:FastifyRequest, res:FastifyReply) {
+    try { //console.log("ok");
+    
         const token = req.headers.authorization;
         const erpCurrentAccounts = await sendRequestToThirdParty(token, 'GET', 'CurrentAccounts/GetErpCurrentAccounts', false, req.query);
         res.send(erpCurrentAccounts);
@@ -11,8 +13,9 @@ async function getErpCurrentAccounts(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function createOrUpdateCurrentAccount(req:FastifyRequest, res:FastifyReply) {
-    try {
+async  createOrUpdateCurrentAccount(req:FastifyRequest, res:FastifyReply) {
+    try { console.log("createorupdate");
+    
         const token = req.headers.authorization;
         const currentAccount = await sendRequestToThirdParty(token, 'POST', 'CurrentAccounts/CreateOrUpdate', false, req.body);
         res.send(currentAccount);
@@ -22,7 +25,9 @@ async function createOrUpdateCurrentAccount(req:FastifyRequest, res:FastifyReply
     }
 }
 
-module.exports = {
-  getErpCurrentAccounts,
-  createOrUpdateCurrentAccount,
-};
+}
+
+// module.exports = {
+//   getErpCurrentAccounts,
+//   createOrUpdateCurrentAccount,
+// };

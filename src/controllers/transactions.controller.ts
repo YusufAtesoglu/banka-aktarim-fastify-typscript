@@ -1,8 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 
-
-async function get(req:FastifyRequest, res:FastifyReply) {
+export class Transactions { 
+async  get(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const bankAccountTransactions = await sendRequestToThirdParty(token, 'GET', 'BankAccountTransactions/GetTransactions', true, req.query);
@@ -13,7 +13,7 @@ async function get(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function setBankAccountTransactionErpCode(req:FastifyRequest, res:FastifyReply) {
+async  setBankAccountTransactionErpCode(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const bankAccountTransaction = await sendRequestToThirdParty(token, 'PUT', 'BankAccountTransactions/SetBankAccountTransactionErpCode', true, req.body);
@@ -24,7 +24,7 @@ async function setBankAccountTransactionErpCode(req:FastifyRequest, res:FastifyR
     }
 }
 
-async function create(req:FastifyRequest, res:FastifyReply) {
+async  create(req:FastifyRequest, res:FastifyReply) {
   try {
   } catch (err:any) {
     console.error(`Error while creating`, err.message);
@@ -32,7 +32,7 @@ async function create(req:FastifyRequest, res:FastifyReply) {
   }
 }
 
-async function update(req:FastifyRequest, res:FastifyReply) {
+async  update(req:FastifyRequest, res:FastifyReply) {
   try {
   } catch (err:any) {
     console.error(`Error while updating`, err.message);
@@ -40,18 +40,18 @@ async function update(req:FastifyRequest, res:FastifyReply) {
   }
 }
 
-async function remove(req:FastifyRequest, res:FastifyReply) {
+async  remove(req:FastifyRequest, res:FastifyReply) {
   try {
   } catch (err:any) {
     console.error(`Error while deleting`, err.message);
    
   }
 }
-
-module.exports = {
-  get,
-  setBankAccountTransactionErpCode,
-  create,
-  update,
-  remove
-};
+}
+// module.exports = {
+//   get,
+//   setBankAccountTransactionErpCode,
+//   create,
+//   update,
+//   remove
+// };

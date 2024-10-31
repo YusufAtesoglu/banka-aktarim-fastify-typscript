@@ -1,10 +1,12 @@
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 // import cors from "@fastify/cors"
-const {transactionsRouter}=require("./src/routes/transactions.route")
-const {accountPlanCodesRouter}=require("./src/routes/accountPlanCodes.route")
-const {currentAccountsRouter}=require("./src/routes/currentAccounts.route")
-const {bankAccountsRouter}=require("./src/routes/bankAccounts.route")
-const app: FastifyInstance = Fastify();
+import {transactionsRouter}from "./src/routes/transactions.route"
+import {accountPlanCodesRouter}from "./src/routes/accountPlanCodes.route"
+import {currentAccountsRouter}from "./src/routes/currentAccounts.route"
+import {bankAccountsRouter}from "./src/routes/bankAccounts.route"
+import fastify from 'fastify';
+
+const app=fastify();
 const port = Number(process.env.PORT) || 3700;
 
 
@@ -20,6 +22,10 @@ app.register(transactionsRouter, { prefix: '/transactions' });
 app.register(accountPlanCodesRouter, { prefix: '/accountPlanCodes' });
 app.register(currentAccountsRouter, { prefix: '/currentAccounts' });
 app.register(bankAccountsRouter, { prefix: '/bankAccounts' });
+// app.register(accountPlanCodesRouter)
+// app.register(bankAccountsRouter)
+// app.register(currentAccountsRouter)
+// app.register(transactionsRouter)
 
 
 app.setErrorHandler((error, req, res) => {

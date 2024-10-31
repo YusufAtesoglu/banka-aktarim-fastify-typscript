@@ -1,20 +1,21 @@
-const accountPlanCodes = require('../controllers/accountPlanCodes.controller');
-import fastify, { FastifyInstance,FastifyPluginCallback } from 'fastify';
-const server: FastifyInstance = fastify({ logger: true });
+import {AccountPlanCodes} from '../controllers/accountPlanCodes.controller';
+import  { FastifyInstance,FastifyPluginCallback } from 'fastify';
+
 
 export const accountPlanCodesRouter: FastifyPluginCallback = async (fastify: FastifyInstance) => {
+const accountPlanCodes=new AccountPlanCodes();
 
 /* GET accountPlanCodes. */
-server.get('/', accountPlanCodes.get);
+fastify.get('/', accountPlanCodes.get);
   
 /* POST accountPlanCode */
-server.post('/', accountPlanCodes.create);
+fastify.post('/', accountPlanCodes.create);
 
 /* PUT accountPlanCode */
-server.put('/:id', accountPlanCodes.update);
+fastify.put('/:id', accountPlanCodes.update);
 
 /* DELETE transaction */
-server.delete('/:id', accountPlanCodes.remove);
+fastify.delete('/:id', accountPlanCodes.remove);
 
 
 }

@@ -1,8 +1,7 @@
 const config =require("../configs/general.config")
 
-
-
-async function sendRequestToThirdParty( token: string,
+async function sendRequestToThirdParty( 
+    token: string,
     method: 'GET' | 'POST' | 'PUT' | 'DELETE',
     url: string,
     isNte: boolean,
@@ -28,15 +27,15 @@ async function sendRequestToThirdParty( token: string,
         baseApiUrl = config.baseUrlTnt;
     }
 
-    // console.log(method, baseApiUrl + url, body);
+     console.log("api"+ method, baseApiUrl + url, body);
     let result = null;
     try {
         const response = await fetch(baseApiUrl + url, options);
         result = await response.json();
-    
-        // console.log(result);
+         console.log(result);
 
-    } catch (error ){
+    } catch (error ){ console.log("burada hata var");
+    
         console.error(error);
     }
     return result; 

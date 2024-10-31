@@ -16,14 +16,15 @@ async function sendRequestToThirdParty(token, method, url, isNte, body) {
     if (isNte === false) {
         baseApiUrl = config.baseUrlTnt;
     }
-    // console.log(method, baseApiUrl + url, body);
+    console.log("api" + method, baseApiUrl + url, body);
     let result = null;
     try {
         const response = await fetch(baseApiUrl + url, options);
         result = await response.json();
-        // console.log(result);
+        console.log(result);
     }
     catch (error) {
+        console.log("burada hata var");
         console.error(error);
     }
     return result;

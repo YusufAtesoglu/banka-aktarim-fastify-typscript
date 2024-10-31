@@ -1,21 +1,24 @@
-import fastify, { FastifyInstance,FastifyPluginCallback } from 'fastify';
-const server: FastifyInstance = fastify({ logger: true });
-const bankAccounts = require('../controllers/bankAccounts.controller');
+import { FastifyInstance,FastifyPluginCallback } from 'fastify';
+import { BankAccounts } from '../controllers/bankAccounts.controller';
 
 export const bankAccountsRouter: FastifyPluginCallback = async (fastify: FastifyInstance) => {
+
+const bankAccounts =new BankAccounts();
+
 /* GET bankAccounts */
-server.get('/GetErpBankAccounts', bankAccounts.getErpBankAccounts);
-server.get('/GetWithBalance', bankAccounts.getWithBalance);
+fastify.get('/GetErpBankAccounts', bankAccounts.getErpBankAccounts);
+
+fastify.get('/GetWithBalance', bankAccounts.getWithBalance);
 
 
 /* GET bankAccount */
-server.get('/:id', bankAccounts.get);
+fastify.get('/:id', bankAccounts.get);
 
 
 /* POST bankAccount */
-server.post('/CreateOrUpdateWithIban', bankAccounts.createOrUpdateWithIban);
+fastify.post('/CreateOrUpdateWithIban', bankAccounts.createOrUpdateWithIban);
 
 /* DELETE bankAccount */
-server.delete('/:id', bankAccounts.remove);
+fastify.delete('/:id', bankAccounts.remove);
 
 }

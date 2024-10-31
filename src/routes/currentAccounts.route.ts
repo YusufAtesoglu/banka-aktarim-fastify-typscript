@@ -1,13 +1,13 @@
-import fastify, { FastifyInstance,FastifyPluginCallback } from 'fastify';
-const currentAccounts=require("../controllers/currentAccounts.controller")
-const server: FastifyInstance = fastify({ logger: true });
+import  { FastifyInstance,FastifyPluginCallback } from 'fastify';
+import { CurrentAccounts } from '../controllers/currentAccounts.controller';
 
 export const currentAccountsRouter: FastifyPluginCallback = async (fastify: FastifyInstance) => {
+const currentAccounts =new CurrentAccounts();
 /* GET currentAccounts */
-server.get('/GetErpCurrentAccounts', currentAccounts.getErpCurrentAccounts);
+fastify.get('/GetErpCurrentAccounts', currentAccounts.getErpCurrentAccounts);
 
 /* POST currentAccount */
-server.post('/CreateOrUpdate', currentAccounts.createOrUpdateCurrentAccount);
+fastify.post('/CreateOrUpdate', currentAccounts.createOrUpdateCurrentAccount);
 
 
 }

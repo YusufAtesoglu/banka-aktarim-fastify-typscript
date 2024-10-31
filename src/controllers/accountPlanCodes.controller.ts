@@ -1,6 +1,8 @@
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 import { FastifyRequest, FastifyReply } from 'fastify';
-async function get(req:FastifyRequest, res:FastifyReply) {
+
+export class AccountPlanCodes{
+async  get(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const accountPlanCodes = await sendRequestToThirdParty(token, 'GET', 'AccountPlanCodes', true, req.query);
@@ -11,7 +13,7 @@ async function get(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function create(req:FastifyRequest, res:FastifyReply) {
+async  create(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const accountPlanCodes = await sendRequestToThirdParty(token, 'POST', 'AccountPlanCodes', true, req.body);
@@ -22,18 +24,18 @@ async function create(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function update(req:FastifyRequest, res:FastifyReply,next:any) {
+async  update(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const accountPlanCodes = await sendRequestToThirdParty(token, 'PUT', 'AccountPlanCodes', true, req.body);
         res.send(accountPlanCodes);
     } catch (err:any) {
         console.error(`Error while updating`, err.message);
-        next(err);
+       
     }
 }
 
-async function remove(req:FastifyRequest, res:FastifyReply) {
+async  remove(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const { id }:any = req.params;
@@ -44,10 +46,10 @@ async function remove(req:FastifyRequest, res:FastifyReply) {
        
     }
 }
-
-module.exports = {
-  get,
-  create,
-  update,
-  remove
-};
+}
+// module.exports = {
+//   get,
+//   create,
+//   update,
+//   remove
+// };

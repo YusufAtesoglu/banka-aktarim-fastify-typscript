@@ -1,6 +1,8 @@
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 import { FastifyRequest, FastifyReply } from 'fastify';
-async function getErpBankAccounts(req:FastifyRequest, res:FastifyReply) {
+
+export class BankAccounts{ 
+async  getErpBankAccounts(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const erpBankAccounts = await sendRequestToThirdParty(token, 'GET', 'BankAccounts/GetErpBankAccounts', false);
@@ -11,7 +13,7 @@ async function getErpBankAccounts(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function get(req:FastifyRequest, res:FastifyReply) {
+async  get(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const { id }:any = req.params;
@@ -23,7 +25,7 @@ async function get(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function createOrUpdateWithIban(req:FastifyRequest, res:FastifyReply) {
+async  createOrUpdateWithIban(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const erpBankAccount = await sendRequestToThirdParty(token, 'POST', 'BankAccounts/CreateOrUpdateWithIban', false, req.body);
@@ -34,7 +36,7 @@ async function createOrUpdateWithIban(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function getWithBalance(req:FastifyRequest, res:FastifyReply) {
+async  getWithBalance(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const erpBankAccount = await sendRequestToThirdParty(token, 'GET', 'BankAccounts/GetWithBalance', true);
@@ -45,7 +47,7 @@ async function getWithBalance(req:FastifyRequest, res:FastifyReply) {
     }
 }
 
-async function remove(req:FastifyRequest, res:FastifyReply) {
+async  remove(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
         const { id }:any = req.params;
@@ -56,11 +58,11 @@ async function remove(req:FastifyRequest, res:FastifyReply) {
        
     }
 }
-
-module.exports = {
-  get,
-  getErpBankAccounts,
-  createOrUpdateWithIban,
-  getWithBalance,
-  remove
-};
+}
+// module.exports = {
+//   get,
+//   getErpBankAccounts,
+//   createOrUpdateWithIban,
+//   getWithBalance,
+//   remove
+// };
