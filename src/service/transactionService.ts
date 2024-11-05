@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 
-export class Transactions { 
+export default class TransactionsServices { 
 async  get(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;

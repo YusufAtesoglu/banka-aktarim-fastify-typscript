@@ -1,17 +1,20 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bankAccountsRouter = void 0;
-const bankAccounts_controller_1 = require("../controllers/bankAccounts.controller");
+const bankAccountService_1 = __importDefault(require("../service/bankAccountService"));
 const bankAccountsRouter = async (fastify) => {
-    const bankAccounts = new bankAccounts_controller_1.BankAccounts();
+    const bankAccountsService = new bankAccountService_1.default();
     /* GET bankAccounts */
-    fastify.get('/GetErpBankAccounts', bankAccounts.getErpBankAccounts);
-    fastify.get('/GetWithBalance', bankAccounts.getWithBalance);
+    fastify.get('/GetErpBankAccounts', bankAccountsService.getErpBankAccounts);
+    fastify.get('/GetWithBalance', bankAccountsService.getWithBalance);
     /* GET bankAccount */
-    fastify.get('/:id', bankAccounts.get);
+    fastify.get('/:id', bankAccountsService.get);
     /* POST bankAccount */
-    fastify.post('/CreateOrUpdateWithIban', bankAccounts.createOrUpdateWithIban);
+    fastify.post('/CreateOrUpdateWithIban', bankAccountsService.createOrUpdateWithIban);
     /* DELETE bankAccount */
-    fastify.delete('/:id', bankAccounts.remove);
+    fastify.delete('/:id', bankAccountsService.remove);
 };
 exports.bankAccountsRouter = bankAccountsRouter;

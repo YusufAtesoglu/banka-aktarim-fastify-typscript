@@ -1,12 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.currentAccountsRouter = void 0;
-const currentAccounts_controller_1 = require("../controllers/currentAccounts.controller");
+const currentAccountService_1 = __importDefault(require("../service/currentAccountService"));
 const currentAccountsRouter = async (fastify) => {
-    const currentAccounts = new currentAccounts_controller_1.CurrentAccounts();
+    const currentAccountsService = new currentAccountService_1.default();
     /* GET currentAccounts */
-    fastify.get('/GetErpCurrentAccounts', currentAccounts.getErpCurrentAccounts);
+    fastify.get('/', currentAccountsService.getErpCurrentAccounts);
     /* POST currentAccount */
-    fastify.post('/CreateOrUpdate', currentAccounts.createOrUpdateCurrentAccount);
+    fastify.post('/', currentAccountsService.createOrUpdateCurrentAccount);
 };
 exports.currentAccountsRouter = currentAccountsRouter;

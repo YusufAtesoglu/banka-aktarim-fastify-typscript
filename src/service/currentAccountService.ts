@@ -1,6 +1,6 @@
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 import { FastifyRequest, FastifyReply } from 'fastify';
-export class CurrentAccounts{
+export default class CurrentAccountsService{
 async  getErpCurrentAccounts(req:FastifyRequest, res:FastifyReply) {
     try { //console.log("ok");
     

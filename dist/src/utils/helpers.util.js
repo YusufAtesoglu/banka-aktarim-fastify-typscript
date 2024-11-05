@@ -9,9 +9,9 @@ async function sendRequestToThirdParty(token, method, url, isNte, body) {
         headers,
         ...(method === 'POST' || method === 'PUT' ? { body: JSON.stringify(body) } : {}),
     };
-    if (['POST', 'PUT'].includes(method)) {
-        options = { ...options, body: JSON.stringify(body) };
-    }
+    // if (['POST', 'PUT'].includes(method)) {
+    //     options = { ...options, body: JSON.stringify(body) };
+    // }
     let baseApiUrl = config.baseUrlNte;
     if (isNte === false) {
         baseApiUrl = config.baseUrlTnt;
@@ -24,7 +24,6 @@ async function sendRequestToThirdParty(token, method, url, isNte, body) {
         console.log(result);
     }
     catch (error) {
-        console.log("burada hata var");
         console.error(error);
     }
     return result;

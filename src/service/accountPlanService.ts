@@ -1,7 +1,7 @@
 const { sendRequestToThirdParty } = require('../utils/helpers.util');
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export class AccountPlanCodes{
+export default class AccountPlanService{
 async  get(req:FastifyRequest, res:FastifyReply) {
     try {
         const token = req.headers.authorization;
