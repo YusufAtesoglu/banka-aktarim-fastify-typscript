@@ -27,7 +27,7 @@ async function sendRequestToThirdParty(
         baseApiUrl = config.baseUrlTnt;
     }
 
-     console.log("api"+ method, baseApiUrl + url, body);
+    //  console.log("api"+ method, baseApiUrl + url, body);
 
     let result=null;
     try {
