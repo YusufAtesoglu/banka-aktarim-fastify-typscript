@@ -16,7 +16,7 @@ async function sendRequestToThirdParty(token, method, url, isNte, body) {
     if (isNte === false) {
         baseApiUrl = config.baseUrlTnt;
     }
-    console.log("api" + method, baseApiUrl + url, body);
+    //  console.log("api"+ method, baseApiUrl + url, body);
     let result = null;
     try {
         const response = await fetch(baseApiUrl + url, options);

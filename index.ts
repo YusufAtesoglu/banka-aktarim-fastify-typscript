@@ -4,6 +4,7 @@ import { transactionsRouter } from './src/routes/transactions.route';
 import { accountPlanCodesRouter } from './src/routes/accountPlanCodes.route';
 import { currentAccountsRouter } from './src/routes/currentAccounts.route';
 import { bankAccountsRouter } from './src/routes/bankAccounts.route';
+import { finrotaRouter } from './src/routes/finrota.route';
 import ConnectToDatabase from './src/entities/dataSource';
 
 
@@ -16,7 +17,7 @@ app.register(transactionsRouter, { prefix: '/transactions' });
 app.register(accountPlanCodesRouter, { prefix: '/accountPlanCodes' });
 app.register(currentAccountsRouter, { prefix: '/currentAccounts' });
 app.register(bankAccountsRouter, { prefix: '/bankAccounts' });
-
+app.register(finrotaRouter, {prefix: '/finrota'})
 
 app.setErrorHandler((error, req, res) => {
   const statusCode = error.statusCode || 500;
@@ -25,22 +26,22 @@ app.setErrorHandler((error, req, res) => {
 });
 
 
-const startServer = async () => {
-  try {
+// const startServer = async () => {
+//   try {
    
-    await dbConnection.connectToDatabase();
-    app.listen({ port, host: '0.0.0.0' }, (err, address) => {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      console.log(`Server listening at ${address}`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1); 
-  }
-};
+//     await dbConnection.connectToDatabase();
+//     app.listen({ port, host: '0.0.0.0' }, (err, address) => {
+//       if (err) {
+//         console.error(err);
+//         process.exit(1);
+//       }
+//       console.log(`Server listening at ${address}`);
+//     });
+//   } catch (error) {
+//     console.error('Failed to start server:', error);
+//     process.exit(1); 
+//   }
+// };
 
-// Sunucuyu başlat
-startServer();
+// // Sunucuyu başlat
+// startServer();
